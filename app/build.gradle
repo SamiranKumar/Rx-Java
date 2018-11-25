@@ -20,14 +20,19 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    api fileTree(dir: 'libs', include: ['*.jar'])
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    def androidSupportVersion = "28.0.0"
+    api "com.android.support:appcompat-v7:$androidSupportVersion"
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
 
     //Rx-Java Library
-    implementation 'io.reactivex:rxjava:1.1.6'
+    def rxjavaVersion = "1.1.6"
+    api "io.reactivex:rxjava:$rxjavaVersion"
+
 }
