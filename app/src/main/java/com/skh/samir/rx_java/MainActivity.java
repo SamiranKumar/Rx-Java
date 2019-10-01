@@ -1,6 +1,7 @@
 package com.skh.samir.rx_java;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,23 +29,23 @@ public class MainActivity extends AppCompatActivity {
                 //  demoObservalJust();
                 //  demoObservalJust1();
                 //demoObservalDefer();
-               // demoObservalInterval();
+                // demoObservalInterval();
                 demoObservalCreate();
             }
         });
     }
 
     private void demoObservalCreate() {
-/*
-* Observable.create() method :
-* It gives us result same to Observable.just(1,2,3,4,5);
-* create() method also provide behaviour as defer() method -- stores the value of the item when subscribe,not initialized.
-* However,in most cases you should not use this function because it has some rules that we must follow as only called subscriber.
-* oncompleted() method or subscriber.onError() only ones and are call.
-*
-*
-* */
-       Observable observable= Observable.create(new Observable.OnSubscribe<Integer>() {
+        /*
+         * Observable.create() method :
+         * It gives us result same to Observable.just(1,2,3,4,5);
+         * create() method also provide behaviour as defer() method -- stores the value of the item when subscribe,not initialized.
+         * However,in most cases you should not use this function because it has some rules that we must follow as only called subscriber.
+         * oncompleted() method or subscriber.onError() only ones and are call.
+         *
+         *
+         * */
+        Observable observable = Observable.create(new Observable.OnSubscribe<Integer>() {
             @Override
             public void call(Subscriber<? super Integer> subscriber) {
                 subscriber.onNext(1);
@@ -81,13 +82,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void demoObservalInterval() {
-/*
-* Observable.interval() method :
-* we will create task with call after 5 min or 2 sec and after 6 time it will finnish!
-* interval will be useful when we want to schedule update data.
-*
-* Example: update data after 5 min
-* */
+        /*
+         * Observable.interval() method :
+         * we will create task with call after 5 min or 2 sec and after 6 time it will finnish!
+         * interval will be useful when we want to schedule update data.
+         *
+         * Example: update data after 5 min
+         * */
 
 
         Observable.interval(2, TimeUnit.SECONDS).subscribe(new Subscriber<Long>() {
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNext(Long aLong) {
 
-                if(aLong == 10){   ///when 10 time called onNext() method it's unsubscribe() method call
+                if (aLong == 10) {   ///when 10 time called onNext() method it's unsubscribe() method call
                     unsubscribe();
                 }
                 logPrint("interval onNext:" + aLong);  //every 2 second after called onNext() method
@@ -233,14 +234,14 @@ public class MainActivity extends AppCompatActivity {
         Observable.subcribe() method will created a subscribe with three onCompleted(), onError() , onNext() function to use the item passed in above.
          */
 
-/*
-* The result is same with From() and just() method !
-* But what is different between from() and just()?
-* --From() method: when we pass into an array or list item,it will issue an array and list that item and the subscriber will also take the parameter as an array or list.
-*
-* --just() method : it will issue each item in the list (will call onNext() time the size of the list in error() condition don't available)
-*
-* */
+        /*
+         * The result is same with From() and just() method !
+         * But what is different between from() and just()?
+         * --From() method: when we pass into an array or list item,it will issue an array and list that item and the subscriber will also take the parameter as an array or list.
+         *
+         * --just() method : it will issue each item in the list (will call onNext() time the size of the list in error() condition don't available)
+         *
+         * */
         Integer[] numArray = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 
